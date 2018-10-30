@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<OutputType>library</OutputType>
+		<IsPackable>true</IsPackable>
+		<BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyTrademarkAttribute>false</GenerateAssemblyTrademarkAttribute>
+		<GenerateAssemblyCultureAttribute>false</GenerateAssemblyCultureAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyGuidAttribute>false</GenerateAssemblyGuidAttribute>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+		<FileVersion>2.0.0.1</FileVersion>
+		<InformationalVersion>Non-CI/CD build</InformationalVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RootNamespace />
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.6.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.6.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Reactive" Version="4.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Blazor.Fluxor\src\Blazor.Fluxor\Blazor.Fluxor.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
+		<EmbeddedResource Include="Content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+		<EmbeddedResource Include="Content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+		<EmbeddedResource Include="Content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+</Project>

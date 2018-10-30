@@ -1,0 +1,36 @@
+resources:
+    -   repo: self
+
+variables:
+    BuildConfiguration: 'Release'
+
+queue:
+    name: Hosted Linux Preview
+
+steps:
+    -   bash: |
+            rm -Rf *
+            ls -la
+        displayName: 'Verzeichnis leeren'
+
+    -   bash: 'git clone https://$(System.AccessToken):x-oauth-basic@punke.visualstudio.com/Blazor/_git/Logixware.Web.Blazor.Fluxor'
+        displayName: 'Quellen herunterladen (Logixware.Web.Blazor.Fluxor)'
+
+    -   task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
+        displayName: '.NET Core Build-Version setzen'
+        inputs:
+            VersionNumber: 'Build $(Build.BuildNumber)'
+            VersionRegex: '.*'
+            Field: InformationalVersion
+            AddDefault: true
+
+    -   task: DotNetCoreCLI@2
+        displayName: '.NET Core | Kompilieren'
+        inputs:
+            projects: Logixware.Web.Blazor.Fluxor/Logixware.Web.Blazor.Fluxor.csproj
+            arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+    -   task: PublishBuildArtifacts@1
+        displayName: 'Veröffentlichen'
+        inputs:
+            ArtifactName: Logixware.Web.Blazor.Fluxor
