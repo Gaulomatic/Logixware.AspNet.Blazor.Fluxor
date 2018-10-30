@@ -18,7 +18,7 @@ steps:
             cd Blazor.Fluxor
             git checkout master
             cd ..
-            displayName: 'Quellen herunterladen und auschecken (Blazor.Fluxor)'
+        displayName: 'Quellen herunterladen und auschecken (Blazor.Fluxor)'
 
     -   bash: 'git clone https://$(System.AccessToken):x-oauth-basic@punke.visualstudio.com/Blazor/_git/Logixware.Web.Blazor.Fluxor'
         displayName: 'Quellen herunterladen (Logixware.Web.Blazor.Fluxor)'
