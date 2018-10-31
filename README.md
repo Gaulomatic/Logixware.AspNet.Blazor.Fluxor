@@ -19,5 +19,4 @@ If you want to learn more about creating good readme files then refer the follow
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
 
-
 [![Build status](https://punke.visualstudio.com/Blazor/_apis/build/status/Logixware.Web.Blazor.Fluxor%20CI)](https://punke.visualstudio.com/DotNetStandard/_build/latest?definitionId=40)

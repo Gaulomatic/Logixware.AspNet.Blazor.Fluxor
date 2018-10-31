@@ -1,8 +1,8 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Logixware© Blazor Core Library")]
-[assembly: AssemblyDescription("Logixware© Blazor Core Library")]
+[assembly: AssemblyTitle("Logixware© Blazor Fluxor Library")]
+[assembly: AssemblyDescription("Logixware© Fluxor Core Library")]
 [assembly: AssemblyProduct("Logixware© Framework")]
 [assembly: AssemblyCompany("Logixware© Tobias Punke")]
 [assembly: AssemblyTrademark("Logixware© Tobias Punke")]
