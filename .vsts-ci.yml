@@ -1,43 +1,35 @@
 resources:
-    -   repo: self
+    repositories:
+        -   repository: templates
+            type: git
+            name: DevOps/BuildTemplates
+
+queue:
+    name: Hosted Ubuntu 1604
+
+name: 2.0.$(NextBuildNumber)$(rev:.r)
+
+trigger:
+    branches:
+        include:
+            - master
 
 variables:
     BuildConfiguration: 'Release'
 
-queue:
-    name: Hosted Linux Preview
-
 steps:
-    -   bash: |
-            rm -Rf *
-            ls -la
-        displayName: 'Verzeichnis leeren'
+    -   template: SetBuildDate.yml@templates
+    -   template: EmptyDirectory.yml@templates
 
-    -   bash: |
-            git clone https://$(AccessToken):x-oauth-basic@bibliotheken.visualstudio.com/Blazor/_git/Blazor.Fluxor
-            cd Blazor.Fluxor
-            git checkout master
-            cd ..
-        displayName: 'Quellen herunterladen und auschecken (Blazor.Fluxor)'
+    -   template: Clone-BuildTemplates.yml@templates
+    -   template: Clone-Logixware.Web.Blazor.Fluxor.yml@templates
 
-    -   bash: 'git clone https://$(System.AccessToken):x-oauth-basic@punke.visualstudio.com/Blazor/_git/Logixware.Web.Blazor.Fluxor'
-        displayName: 'Quellen herunterladen (Logixware.Web.Blazor.Fluxor)'
+    -   template: SetAssemblyVersion.yml@templates
+        parameters:
+            ProjectName: 'Logixware.Web.Blazor.Fluxor'
 
-    -   task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
-        displayName: '.NET Core Build-Version setzen'
-        inputs:
-            VersionNumber: 'Build $(Build.BuildNumber)'
-            VersionRegex: '.*'
-            Field: InformationalVersion
-            AddDefault: true
+    -   template: BuildAndUploadLibrary.yml@templates
+        parameters:
+            ProjectName: 'Logixware.Web.Blazor.Fluxor'
 
-    -   task: DotNetCoreCLI@2
-        displayName: '.NET Core | Kompilieren'
-        inputs:
-            projects: Logixware.Web.Blazor.Fluxor/Logixware.Web.Blazor.Fluxor.csproj
-            arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-
-    -   task: PublishBuildArtifacts@1
-        displayName: 'Veröffentlichen'
-        inputs:
-            ArtifactName: Logixware.Web.Blazor.Fluxor
+    -   template: IncrementBuildNumber.yml@templates
