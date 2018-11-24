@@ -21,9 +21,11 @@ steps:
     -   template: SetBuildDate.yml@templates
     -   template: EmptyDirectory.yml@templates
 
-    -   template: Clone-BuildTemplates.yml@templates
-
     -   template: Clone-Blazor.Fluxor.yml@templates
+            parameters:
+                Branch: 'master'
+
+    -   template: Clone-BuildTemplates.yml@templates
     -   template: Clone-Logixware.Web.Blazor.Fluxor.yml@templates
 
     -   template: SetAssemblyVersion.yml@templates
