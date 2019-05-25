@@ -57,11 +57,4 @@
 		<ProjectReference Include="..\Blazor.Fluxor\src\Blazor.Fluxor\Blazor.Fluxor.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
-		<EmbeddedResource Include="Content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-		<EmbeddedResource Include="Content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-		<EmbeddedResource Include="Content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
 </Project>
