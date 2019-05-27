@@ -52,7 +52,7 @@ namespace Logixware.Web.Blazor.Fluxor
 
 			else if (!this._IsInitialized)
 			{
-				await this.Store.Initialized;
+//				await this.Store.Initialized;
 				await this.OnInitializedAsync();
 				this._IsInitialized = true;
 				await base.Invoke(base.StateHasChanged);
