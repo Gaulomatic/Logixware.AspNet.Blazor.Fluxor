@@ -36,6 +36,7 @@ namespace Logixware.Web.Blazor.Fluxor
 		[Parameter] protected EventCallback OnInitialized { get; set; }
 
 		[Inject] protected IStore Store { get; set; }
+		[Inject] protected IComponentContext Context { get; set; }
 
 		private Boolean _IsConnected;
 
@@ -43,6 +44,11 @@ namespace Logixware.Web.Blazor.Fluxor
 
 		protected override async Task OnAfterRenderAsync()
 		{
+			if (!this.Context.IsConnected)
+			{
+				return;
+			}
+
 			if (!this._IsConnected)
 			{
 				await this.OnConnectedAsync();
