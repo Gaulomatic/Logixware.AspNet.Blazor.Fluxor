@@ -7,6 +7,9 @@ using Blazor.Fluxor;
 
 namespace Logixware.Web.Blazor.Fluxor
 {
+	/// <summary>
+	/// Implements members to make the store observable.
+	/// </summary>
 	public class ReactiveMiddleware : Middleware, IReactiveStore
 	{
 		private readonly List<IObserver<IAction>> _ActionSubscribers;
@@ -21,18 +24,9 @@ namespace Logixware.Web.Blazor.Fluxor
 			this._States = new Dictionary<Type, Object>();
 		}
 
-		public IObservable<IAction> Actions
-		{
-			get
-			{
-				return Observable.Create<IAction>(o =>
-				{
-					this._ActionSubscribers.Add(o);
-					return () => this._ActionSubscribers.Remove(o);
-				});
-			}
-		}
-
+		/// <summary>
+		/// Returns an <see cref="T:System.IObservable`1" /> for the state objects inside the store.
+		/// </summary>
 		public IObservable<Object> States
 		{
 			get
@@ -41,6 +35,21 @@ namespace Logixware.Web.Blazor.Fluxor
 				{
 					this._StateSubscribers.Add(o);
 					return () => this._StateSubscribers.Remove(o);
+				});
+			}
+		}
+
+		/// <summary>
+		/// Returns an <see cref="T:System.IObservable`1" /> for actions which are dispatched.
+		/// </summary>
+		public IObservable<IAction> Actions
+		{
+			get
+			{
+				return Observable.Create<IAction>(o =>
+				{
+					this._ActionSubscribers.Add(o);
+					return () => this._ActionSubscribers.Remove(o);
 				});
 			}
 		}

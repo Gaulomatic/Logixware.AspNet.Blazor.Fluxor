@@ -8,6 +8,9 @@ using Blazor.Fluxor;
 
 namespace Logixware.Web.Blazor.Fluxor
 {
+	/// <summary>
+	/// A component to initialize the store
+	/// </summary>
 	public class StoreInitializer : ComponentBase
 	{
 		/// <summary>
