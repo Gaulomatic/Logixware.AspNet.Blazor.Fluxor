@@ -6,11 +6,62 @@ Extensions for [Blazor Fluxor](https://github.com/mrpmorris/blazor-fluxor).
 ## 1. Reactive extensions
 
 ### Usage
+
+#### On app init: 
+
 ```csharp
 services.AddFluxor(options => options
    ....
    .AddReactiveMiddleware(services)
 );
+```
+
+#### State inside a component: 
+```csharp
+protected override void OnInit()
+{
+    this.Store.States
+
+        .TakeUntil(this._IsDisposed)
+        .TakeState<SidebarsState>()
+        .Where(state => state.Sidebars.ContainsKey(this.SidebarPosition))
+        .Subscribe(state =>
+        {
+            if (this._IsMobile)
+            {
+                this._IsFullScreen = state.Sidebars[this.SidebarPosition].IsOpen;
+                base.StateHasChanged();
+            }
+        });
+}
+```
+
+#### Actions inside a component: 
+```csharp
+protected override void OnInit()
+{
+    this.Store.Actions
+
+        .TakeUntil(this._IsDisposed)
+        .Where(action => action is OpenMobileSidebarAction)
+        .Where(action => ((OpenMobileSidebarAction) action).SidebarPosition == this.SidebarPosition)
+        .Subscribe(action =>
+        {
+            this._IsFullScreen = this._IsMobile;
+            base.StateHasChanged();
+        });
+
+    this.Store.Actions
+
+        .TakeUntil(this._IsDisposed)
+        .Where(action => action is CloseMobileSidebarAction)
+        .Where(action => ((CloseMobileSidebarAction) action).SidebarPosition == this.SidebarPosition)
+        .Subscribe(action =>
+        {
+            this._IsFullScreen = false;
+            base.StateHasChanged();
+        });
+}
 ```
 
 # Contribute
