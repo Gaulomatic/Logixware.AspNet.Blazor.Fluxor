@@ -18,6 +18,8 @@ services.AddFluxor(options => options
 
 #### State inside a component: 
 ```csharp
+@inject IReactiveStore Store
+
 protected override void OnInit()
 {
     this.Store.States
@@ -38,6 +40,8 @@ protected override void OnInit()
 
 #### Actions inside a component: 
 ```csharp
+@inject IReactiveStore Store
+
 protected override void OnInit()
 {
     this.Store.Actions
