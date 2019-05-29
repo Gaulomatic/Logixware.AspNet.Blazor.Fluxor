@@ -42,9 +42,8 @@ protected override void OnInit()
 {
     this.Store.Actions
 
-        .TakeUntil(this._IsDisposed)
-        .Where(action => action is OpenMobileSidebarAction)
-        .Where(action => ((OpenMobileSidebarAction) action).SidebarPosition == this.SidebarPosition)
+        .TakeAction<OpenMobileSidebarAction>()
+        .Where(action => action.SidebarPosition == this.SidebarPosition)
         .Subscribe(action =>
         {
             this._IsFullScreen = this._IsMobile;
@@ -53,9 +52,8 @@ protected override void OnInit()
 
     this.Store.Actions
 
-        .TakeUntil(this._IsDisposed)
-        .Where(action => action is CloseMobileSidebarAction)
-        .Where(action => ((CloseMobileSidebarAction) action).SidebarPosition == this.SidebarPosition)
+        .TakeAction<CloseMobileSidebarAction>()
+        .Where(action => action.SidebarPosition == this.SidebarPosition)
         .Subscribe(action =>
         {
             this._IsFullScreen = false;
