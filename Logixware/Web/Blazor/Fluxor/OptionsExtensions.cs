@@ -14,8 +14,6 @@ namespace Logixware.Web.Blazor.Fluxor
 			if (services == null) throw new ArgumentNullException(nameof(services));
 
 			options.AddMiddleware<ReactiveMiddleware>();
-
-			services.AddScoped<IReactiveEffects>(x => x.GetRequiredService<ReactiveMiddleware>());
 			services.AddScoped<IReactiveStore>(x => x.GetRequiredService<ReactiveMiddleware>());
 
 			return options;

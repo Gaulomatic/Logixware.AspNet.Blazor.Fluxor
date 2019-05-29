@@ -7,7 +7,7 @@ using Blazor.Fluxor;
 
 namespace Logixware.Web.Blazor.Fluxor
 {
-	public class ReactiveMiddleware : Middleware, IReactiveEffects, IReactiveStore
+	public class ReactiveMiddleware : Middleware, IReactiveStore
 	{
 		private readonly List<IObserver<IAction>> _ActionSubscribers;
 		private readonly List<IObserver<Object>> _StateSubscribers;
