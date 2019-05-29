@@ -15,8 +15,8 @@ namespace Logixware.Web.Blazor.Fluxor
 
 			options.AddMiddleware<ReactiveMiddleware>();
 
-			services.AddSingleton<IReactiveEffects>(x => x.GetRequiredService<ReactiveMiddleware>());
-			services.AddSingleton<IReactiveStore>(x => x.GetRequiredService<ReactiveMiddleware>());
+			services.AddScoped<IReactiveEffects>(x => x.GetRequiredService<ReactiveMiddleware>());
+			services.AddScoped<IReactiveStore>(x => x.GetRequiredService<ReactiveMiddleware>());
 
 			return options;
 		}
