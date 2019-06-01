@@ -1,4 +1,4 @@
-[![Build status](https://punke.visualstudio.com/Blazor/_apis/build/status/Logixware.Web.Blazor.Fluxor%20CI)](https://punke.visualstudio.com/DotNetStandard/_build/latest?definitionId=40)
+[![Build status](https://punke.visualstudio.com/Blazor/_apis/build/status/Logixware.AspNet.Blazor.Fluxor%20CI)](https://punke.visualstudio.com/DotNetStandard/_build/latest?definitionId=40)
 
 # Introduction 
 Extensions for [Blazor Fluxor](https://github.com/mrpmorris/blazor-fluxor).

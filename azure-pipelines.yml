@@ -7,7 +7,7 @@ resources:
 queue:
     name: Hosted Ubuntu 1604
 
-name: 2.0.$(NextBuildNumber)$(rev:.r)
+name: 3.0.$(NextBuildNumber)$(rev:.r)
 
 trigger:
     branches:
@@ -22,17 +22,18 @@ steps:
     -   template: EmptyDirectory.yml@templates
 
     -   template: Clone-BuildTemplates.yml@templates
-    -   template: Clone-Logixware.Web.Blazor.Fluxor.yml@templates
     -   template: Clone-Blazor.Fluxor.yml@templates
+
+    -   template: Clone-Logixware.AspNet.Blazor.Fluxor.yml@templates
         parameters:
             Branch: 'master'
 
     -   template: SetAssemblyVersion.yml@templates
         parameters:
-            ProjectName: 'Logixware.Web.Blazor.Fluxor'
+            ProjectName: 'Logixware.AspNet.Blazor.Fluxor'
 
     -   template: BuildAndUploadLibrary.yml@templates
         parameters:
-            ProjectName: 'Logixware.Web.Blazor.Fluxor'
+            ProjectName: 'Logixware.AspNet.Blazor.Fluxor'
 
     -   template: IncrementBuildNumber.yml@templates
