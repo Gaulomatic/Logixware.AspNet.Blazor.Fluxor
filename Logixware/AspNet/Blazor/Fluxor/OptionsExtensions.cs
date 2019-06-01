@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Blazor.Fluxor.DependencyInjection;
 
-namespace Logixware.Web.Blazor.Fluxor
+namespace Logixware.AspNet.Blazor.Fluxor
 {
 	/// <summary>
 	/// Fluxor options extensions for adding stuff to Fluxor
@@ -24,8 +24,8 @@ namespace Logixware.Web.Blazor.Fluxor
 			if (options == null) throw new ArgumentNullException(nameof(options));
 			if (services == null) throw new ArgumentNullException(nameof(services));
 
-			options.AddMiddleware<ReactiveMiddleware>();
-			services.AddScoped<IReactiveStore>(x => x.GetRequiredService<ReactiveMiddleware>());
+			options.AddMiddleware<ObservableMiddleware>();
+			services.AddScoped<IObservableStore>(x => x.GetRequiredService<ObservableMiddleware>());
 
 			return options;
 		}

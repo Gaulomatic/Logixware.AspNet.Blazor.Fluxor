@@ -3,7 +3,7 @@ using System.Reactive.Linq;
 
 using Blazor.Fluxor;
 
-namespace Logixware.Web.Blazor.Fluxor
+namespace Logixware.AspNet.Blazor.Fluxor
 {
 	/// <summary>
 	/// Extensions for Observables
