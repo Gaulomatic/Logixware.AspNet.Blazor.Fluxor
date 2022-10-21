@@ -1,8 +1,6 @@
 using System;
 using System.Reactive.Linq;
 
-using Blazor.Fluxor;
-
 namespace Logixware.AspNet.Blazor.Fluxor
 {
 	/// <summary>
@@ -11,18 +9,17 @@ namespace Logixware.AspNet.Blazor.Fluxor
 	public static class ObservableExtensions
 	{
 		/// <summary>
-		///	Returns an <see cref="T:System.IObservable`1" /> filtered for the given <see cref="T:Blazor.Fluxor.IAction" />
+		///	Returns an <see cref="T:System.IObservable`1" /> filtered for the given action.
 		/// </summary>
 		/// <param name="target">The source <see cref="T:System.IObservable`1" /></param>
-		/// <typeparam name="TAction"><see cref="T:Blazor.Fluxor.IAction" /> to filter</typeparam>
-		/// <returns>The <see cref="T:System.IObservable`1" /> filtered for the given <see cref="T:Blazor.Fluxor.IAction" /></returns>
+		/// <typeparam name="TAction">Action to filter</typeparam>
+		/// <returns>The <see cref="T:System.IObservable`1" /> filtered for the given action</returns>
 		/// <exception cref="ArgumentNullException">If target is null</exception>
-		public static IObservable<TAction> TakeAction<TAction>(this IObservable<IAction> target) where TAction : IAction
+		public static IObservable<TAction> TakeAction<TAction>(this IObservable<object> target)
 		{
 			if (target == null) throw new ArgumentNullException(nameof(target));
 
 			return target
-
 				.Where(action => action is TAction)
 				.Select(action => (TAction) action);
 		}
@@ -34,12 +31,11 @@ namespace Logixware.AspNet.Blazor.Fluxor
 		/// <typeparam name="TState">The state type</typeparam>
 		/// <returns>The <see cref="T:System.IObservable`1" /> filtered for the given state type</returns>
 		/// <exception cref="ArgumentNullException">If target is null</exception>
-		public static IObservable<TState> TakeState<TState>(this IObservable<Object> target)
+		public static IObservable<TState> TakeState<TState>(this IObservable<object> target)
 		{
 			if (target == null) throw new ArgumentNullException(nameof(target));
 
 			return target
-
 				.Where(action => action is TState)
 				.Select(action => (TState) action);
 		}

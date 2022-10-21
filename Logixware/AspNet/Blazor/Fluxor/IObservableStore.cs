@@ -1,7 +1,5 @@
 using System;
 
-using Blazor.Fluxor;
-
 namespace Logixware.AspNet.Blazor.Fluxor
 {
 	/// <summary>
@@ -12,11 +10,11 @@ namespace Logixware.AspNet.Blazor.Fluxor
 		/// <summary>
 		/// Returns an <see cref="T:System.IObservable`1" /> for the state objects inside the store.
 		/// </summary>
-		IObservable<Object> States { get; }
+		IObservable<object> States { get; }
 
 		/// <summary>
 		/// Returns an <see cref="T:System.IObservable`1" /> for actions which are dispatched.
 		/// </summary>
-		IObservable<IAction> Actions { get; }
+		IObservable<object> Actions { get; }
 	}
 }
