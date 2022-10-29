@@ -12,7 +12,7 @@ Extensions for [Blazor Fluxor](https://github.com/mrpmorris/blazor-fluxor).
 ```csharp
 services.AddFluxor(options => options
    ....
-   .AddReactiveMiddleware(services)
+   .AddReactiveStore(services)
 );
 ```
 
