@@ -11,13 +11,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<RestoreAdditionalProjectSources>
-			https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-			https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-		</RestoreAdditionalProjectSources>
-	</PropertyGroup>
-
-	<PropertyGroup>
 		<RazorLangVersion>3.0</RazorLangVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
